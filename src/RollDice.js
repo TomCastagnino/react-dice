@@ -5,7 +5,7 @@ import Die from './Die';
 class RollDice extends Component {
     constructor(props) {
         super(props);
-        this.state = {dieOne: 1, dieTwo: 1};
+        this.state = {dieOne: 1, dieTwo: 1, isRolling: false};
         this.roll = this.roll.bind(this);
     }
 
@@ -14,7 +14,10 @@ class RollDice extends Component {
     }
 
     roll() {
-        this.setState({dieOne: this.generateRan(), dieTwo: this.generateRan()})
+        this.setState({dieOne: this.generateRan(), dieTwo: this.generateRan(), isRolling: true});
+        setTimeout(() => {
+            this.setState({isRolling: false});
+        }, 1000);
     }
 
     render() {
@@ -23,10 +26,12 @@ class RollDice extends Component {
         return (
             <div className='RollDice'>
                 <div className='RollDice-container'>
-                    <Die num={dieOne}/>
-                    <Die num={dieTwo}/>
+                    <Die num={dieOne} rolling={this.state.isRolling}/>
+                    <Die num={dieTwo} rolling={this.state.isRolling}/>
                 </div>
-                <button onClick={this.roll}>Roll Dice!</button>
+                <button onClick={this.roll} disabled={this.state.isRolling}>
+                    {this.state.isRolling ? 'Rolling...' : 'Roll Dice!'}
+                </button>
             </div>
         )
     }
