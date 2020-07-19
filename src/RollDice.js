@@ -21,9 +21,11 @@ class RollDice extends Component {
         let dieOne = this.state.dieOne;
         let dieTwo = this.state.dieTwo;
         return (
-            <div>
-                <Die num={dieOne}/>
-                <Die num={dieTwo}/>
+            <div className='RollDice'>
+                <div className='RollDice-container'>
+                    <Die num={dieOne}/>
+                    <Die num={dieTwo}/>
+                </div>
                 <button onClick={this.roll}>Roll Dice!</button>
             </div>
         )

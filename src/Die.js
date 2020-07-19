@@ -31,7 +31,7 @@ class Die extends Component {
     render() {
         return (
             <div>
-                <i className={this.getClassName(this.props.num)}></i>
+                <i className={`Die ${this.getClassName(this.props.num)}`}></i>
             </div>
         )
     }
